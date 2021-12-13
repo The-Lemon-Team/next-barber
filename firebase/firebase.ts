@@ -4,9 +4,11 @@ import {
   collection,
   doc,
   getDoc,
+  DocumentReference,
 } from '@firebase/firestore';
 
 import { variables } from './variables';
+import { IFeature, IMainPageData } from '../interfaces/IMainPageData';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,4 +26,24 @@ export const firestore = initializeFirestore(firebaseApp, {});
 const mainPageCollection = collection(firestore, variables.dbPath || '');
 const docRef = doc(mainPageCollection, variables.docId);
 
-export const getMainPage = () => getDoc(docRef).then((result) => result.data());
+interface IRawData {
+  title: string;
+  features: DocumentReference[];
+}
+
+export const getRawMainPage = () =>
+  getDoc(docRef).then((result) => {
+    return result.data() as IRawData;
+  });
+
+export const getMainPage = () =>
+  getRawMainPage().then(({ features, title }) => {
+    const featureDocs = features.map((docRef) =>
+      getDoc(docRef).then((result) => result.data() as IFeature),
+    );
+
+    return Promise.all(featureDocs).then((features: IFeature[]) => ({
+      features,
+      title,
+    }));
+  });

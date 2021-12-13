@@ -1,0 +1,7 @@
+.main {
+  flex-grow: 1;
+  padding: 60px 0 180px;
+  color: rgb(0, 0, 0);
+  background: rgb(248, 245, 242);
+  height: 100vh;
+}

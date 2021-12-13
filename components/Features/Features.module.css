@@ -1,0 +1,55 @@
+.container {
+  padding: 80px 0 0 0;
+}
+
+.logo {
+  display: block;
+  width: 520px;
+  margin: 0 auto;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  margin: 80px 0;
+  color: rgb(255, 255, 255);
+  flex-direction: row;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.feature {
+  padding: 0 20px;
+  margin: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  width: 310px;
+}
+
+.featureTitle {
+  font-size: 30px;
+  line-height: 42px;
+}
+
+.featureTitle::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 20px auto 25px;
+  background: rgb(255, 255, 255);
+  transform: rotate(45deg);
+}
+
+.description {
+  line-height: 1.3;
+}

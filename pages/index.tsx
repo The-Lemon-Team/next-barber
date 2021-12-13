@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import {
   createMuiTheme,
@@ -11,8 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { contentFulClient } from '../contentfull/client';
-import { IStakeholderServiceFields } from '../contentful';
+import { getMainPage } from '../firebase/firebase';
 
 import styles from '../styles/Home.module.css';
 
@@ -45,12 +44,13 @@ const mainTheme = createMuiTheme({
   },
 });
 
-const Home: NextPage = ({
+const Home = ({
   services,
+  title,
 }: {
   services: IStakeholderServiceFields[];
+  title: string;
 }) => {
-
   return (
     <>
       <Head>
@@ -61,10 +61,12 @@ const Home: NextPage = ({
           <div className={styles.container}>
             <h1>
               <Typography variant="h2" color="white">
-                Барберная
+                {title}
               </Typography>
             </h1>
-            <Typography variant='h5' color='white'>Прайс лист:</Typography>
+            <Typography variant="h5" color="white">
+              Прайс лист:
+            </Typography>
             <Table size="small">
               <TableHead>
                 <TableRow>
@@ -95,18 +97,12 @@ const Home: NextPage = ({
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const rawServices =
-    await contentFulClient.getEntries<IStakeholderServiceFields>({
-      content_type: 'stakeholder-service',
-      select: 'fields.slug,fields.name,fields.price',
-    });
-  const services = rawServices.items.map((rawService) => ({
-    ...rawService.fields,
-  }));
+  const mainPageData = await getMainPage();
 
   return {
     props: {
-      services,
+      title: '',
+      services: [],
     },
   };
 };

@@ -17,8 +17,8 @@ export const Features: React.FC<IFeaturesProps> = ({ features }) => {
   return (
     <div className={classNames(sharedStyles.widthWrapper, styles.container)}>
       <div className={styles.logo}>
-        <Image
-          src={profilePic}
+        <img
+          src={profilePic.src}
           width="520"
           height="212"
           alt="Барбершоп «Borodinski»"

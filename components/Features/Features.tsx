@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Typography, Button, Grid, useMediaQuery } from '@mui/material';
+import { Typography, Button, Grid } from '@mui/material';
 
 import sharedStyles from '../../styles/shared.module.css';
 import styles from './Features.module.css';

@@ -45,14 +45,14 @@
   margin: 0;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   flex-wrap: wrap;
   flex-grow: 1;
   width: 310px;
 }
 
 .featureTitle {
-  font-size: 30px;
+  font-size: 30px !important;
   line-height: 42px;
 }
 
@@ -80,7 +80,7 @@
   }
 
   .grid {
-    flex-direction: column-reverse;
+    flex-direction: column-reverse !important;
   }
 
   .button {

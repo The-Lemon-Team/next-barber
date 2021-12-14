@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button, Grid, useMediaQuery } from '@mui/material';
 
 import sharedStyles from '../../styles/shared.module.css';
 import styles from './Features.module.css';
@@ -15,24 +15,28 @@ interface IFeaturesProps {
 
 export const Features: React.FC<IFeaturesProps> = ({ features }) => {
   return (
-    <div className={sharedStyles.widthWrapper}>
-      <div className={classNames(styles.container)}>
-        <div className={styles.actionContent}>
-          <img src={textLogoPic.src} width="380" />
-          <Button variant="contained" className={styles.button}>
-            Записаца
-          </Button>
-        </div>
+    <div className={classNames(sharedStyles.widthWrapper, styles.container)}>
+      <Grid container className={styles.grid} alignItems="center">
+        <Grid item xs={12} md={6} lg={6} style={{ textAlign: 'left' }}>
+          <div className={styles.actionContent}>
+            <img src={textLogoPic.src} className={styles.textLogo} />
+            <Button variant="contained" className={styles.button}>
+              Записаца
+            </Button>
+          </div>
+        </Grid>
 
-        <div className={styles.logo}>
-          <img src={barbePic.src} width="420" alt="Барбершоп «Borodinski»" />
-        </div>
-      </div>
+        <Grid item xs={12} md={6} lg={6}>
+          <div className={styles.logo}>
+            <img src={barbePic.src} alt="Барбершоп «Borodinski»" />
+          </div>
+        </Grid>
+      </Grid>
 
       <section className={styles.features}>
-        <ul className={styles.content}>
+        <Grid container className={styles.content}>
           {features.map(({ title, description }, index) => (
-            <li className={styles.feature} key={index}>
+            <Grid item xs={12} md={4} key={index} className={styles.feature}>
               <b className={styles.featureTitle}>{title}</b>
               <Typography
                 variant="subtitle1"
@@ -41,9 +45,9 @@ export const Features: React.FC<IFeaturesProps> = ({ features }) => {
               >
                 <b> {description}</b>
               </Typography>
-            </li>
+            </Grid>
           ))}
-        </ul>
+        </Grid>
       </section>
     </div>
   );

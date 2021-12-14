@@ -7,7 +7,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",
-    "contentful-typescript-codegen": "contentful-typescript-codegen --output ./contentful.d.ts"
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.6.0",

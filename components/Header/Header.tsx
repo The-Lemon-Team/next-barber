@@ -14,8 +14,13 @@ export const Header: React.FC<{ title: string }> = ({ title }) => {
       }}
       className={classNames(styles.header)}
     >
-      <div className={sharedStyles.widthWrapper} style={{ color: '#fff' }}>
-        {title}
+      <div
+        className={sharedStyles.widthWrapper}
+        style={{ color: materialTheme.palette.common.white }}
+      >
+        <span style={{ marginRight: '15px' }}>{title}</span>
+        {'|'}
+        <span style={{ marginLeft: '15px' }}>Сайт находится в разработке</span>
       </div>
     </div>
   );

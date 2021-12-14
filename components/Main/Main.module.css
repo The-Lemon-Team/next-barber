@@ -4,4 +4,37 @@
   color: rgb(0, 0, 0);
   background: rgb(248, 245, 242);
   height: 100vh;
+  position: relative;
+}
+
+.main::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  background: rgb(246, 246, 246);
+  height: 100px;
+  background: linear-gradient(
+    0deg,
+    rgba(246, 246, 246, 0) 0%,
+    rgba(210, 218, 219, 1) 71%
+  );
+  left: 0;
+  right: 0;
+  opacity: 0.2;
+}
+
+.main::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  background: rgb(246, 246, 246);
+  height: 100px;
+  background: linear-gradient(
+          180deg,
+          rgba(246, 246, 246, 0) 0%,
+          rgba(210, 218, 219, 1) 71%
+  );
+  left: 0;
+  right: 0;
+  opacity: 0.2;
 }

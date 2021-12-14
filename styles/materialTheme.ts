@@ -11,7 +11,7 @@ export const materialTheme = createTheme({
       white: '#FDFFFC',
     },
     primary: {
-      main: '#E71D36',
+      main: '#FDFFFC',
     },
     secondary: {
       main: '#0057FF',

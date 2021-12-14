@@ -1,17 +1,33 @@
+.actionContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
 .container {
   padding: 80px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  margin-top: 36px;
+  width: 80%;
+  font-weight: 600;
 }
 
 .logo {
   display: block;
-  width: 520px;
-  margin: 0 auto;
+  width: 420px;
 }
 
 .features {
   display: flex;
   justify-content: space-between;
-  margin: 80px 0;
+  margin: 100px 0 0 0;
   color: rgb(255, 255, 255);
   flex-direction: row;
 }

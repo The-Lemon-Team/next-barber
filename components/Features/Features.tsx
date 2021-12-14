@@ -1,11 +1,11 @@
 import React from 'react';
-import Image from 'next/image';
 import classNames from 'classnames';
-import { Typography } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 
 import sharedStyles from '../../styles/shared.module.css';
 import styles from './Features.module.css';
-import profilePic from './barber-logo.png';
+import textLogoPic from './text-logo.png';
+import barbePic from './barbe.png';
 
 import { IFeature } from '../../interfaces/IMainPageData';
 
@@ -15,14 +15,18 @@ interface IFeaturesProps {
 
 export const Features: React.FC<IFeaturesProps> = ({ features }) => {
   return (
-    <div className={classNames(sharedStyles.widthWrapper, styles.container)}>
-      <div className={styles.logo}>
-        <img
-          src={profilePic.src}
-          width="520"
-          height="212"
-          alt="Барбершоп «Borodinski»"
-        />
+    <div className={sharedStyles.widthWrapper}>
+      <div className={classNames(styles.container)}>
+        <div className={styles.actionContent}>
+          <img src={textLogoPic.src} width="380" />
+          <Button variant="contained" className={styles.button}>
+            Записаца
+          </Button>
+        </div>
+
+        <div className={styles.logo}>
+          <img src={barbePic.src} width="420" alt="Барбершоп «Borodinski»" />
+        </div>
       </div>
 
       <section className={styles.features}>

@@ -3,7 +3,13 @@ export interface IFeature {
   description: string;
 }
 
+export interface IPriceListItem {
+  name: string;
+  price: number;
+}
+
 export interface IMainPageData {
   title: string;
   features: IFeature[];
+  priceList: IPriceListItem[];
 }

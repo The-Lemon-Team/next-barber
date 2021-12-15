@@ -8,14 +8,16 @@ import { materialTheme } from '../styles/materialTheme';
 import { getMainPage } from '../firebase/firebase';
 import { Features } from '../components/Features/Features';
 import { Main } from '../components/Main';
-import { IFeature } from '../interfaces/IMainPageData';
+import { IFeature, IPriceListItem } from '../interfaces/IMainPageData';
+import { PriceList } from '../components/PriceList/PriceList';
 
 interface IHomeProps {
   title: string;
   features: IFeature[];
+  priceList: IPriceListItem[];
 }
 
-const Home = ({ features, title }: IHomeProps) => {
+const Home = ({ features, title, priceList }: IHomeProps) => {
   return (
     <>
       <Head>
@@ -27,6 +29,7 @@ const Home = ({ features, title }: IHomeProps) => {
           <Header title={title} />
           <Features features={features} />
         </Main>
+        <PriceList priceList={priceList} />
       </ThemeProvider>
     </>
   );
@@ -37,10 +40,13 @@ export default Home;
 export const getStaticProps: GetStaticProps = async () => {
   const mainPageData = await getMainPage();
 
+  console.log(mainPageData.priceList);
+
   return {
     props: {
       title: mainPageData.title,
       features: mainPageData.features,
+      priceList: mainPageData.priceList,
     },
   };
 };

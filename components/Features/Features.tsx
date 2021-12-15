@@ -1,8 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
 import { Typography, Button, Grid } from '@mui/material';
 
-import sharedStyles from '../../styles/shared.module.css';
+import { OutWrapper } from '../OutWrapper';
+
 import styles from './Features.module.css';
 import textLogoPic from './text-logo.png';
 import barbePic from './barbe.png';
@@ -15,7 +15,7 @@ interface IFeaturesProps {
 
 export const Features: React.FC<IFeaturesProps> = ({ features }) => {
   return (
-    <div className={classNames(sharedStyles.widthWrapper, styles.container)}>
+    <OutWrapper className={styles.container}>
       <Grid container className={styles.grid} alignItems="center">
         <Grid item xs={12} md={6} lg={6} style={{ textAlign: 'left' }}>
           <div className={styles.actionContent}>
@@ -49,6 +49,6 @@ export const Features: React.FC<IFeaturesProps> = ({ features }) => {
           ))}
         </Grid>
       </section>
-    </div>
+    </OutWrapper>
   );
 };

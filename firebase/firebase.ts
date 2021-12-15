@@ -8,7 +8,11 @@ import {
 } from '@firebase/firestore';
 
 import { variables } from './variables';
-import { IFeature, IMainPageData } from '../interfaces/IMainPageData';
+import {
+  IFeature,
+  IMainPageData,
+  IPriceListItem,
+} from '../interfaces/IMainPageData';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -29,6 +33,7 @@ const docRef = doc(mainPageCollection, variables.docId);
 interface IRawData {
   title: string;
   features: DocumentReference[];
+  priceList: DocumentReference[];
 }
 
 export const getRawMainPage = () =>
@@ -36,14 +41,21 @@ export const getRawMainPage = () =>
     return result.data() as IRawData;
   });
 
-export const getMainPage = () =>
-  getRawMainPage().then(({ features, title }) => {
+export const getMainPage = (): Promise<IMainPageData> =>
+  getRawMainPage().then(({ features, title, priceList }) => {
     const featureDocs = features.map((docRef) =>
       getDoc(docRef).then((result) => result.data() as IFeature),
     );
+    const priceListDocs = priceList.map((docRef) =>
+      getDoc(docRef).then((result) => result.data() as IPriceListItem),
+    );
 
-    return Promise.all(featureDocs).then((features: IFeature[]) => ({
+    return Promise.all([
+      Promise.all(featureDocs),
+      Promise.all(priceListDocs),
+    ]).then(([features, priceList]) => ({
       features,
+      priceList,
       title,
     }));
   });

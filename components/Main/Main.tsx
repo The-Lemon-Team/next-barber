@@ -10,7 +10,8 @@ export const Main: React.FC = ({ children }) => {
     <div
       className={styles.main}
       style={{
-        background: `${materialTheme.palette.common.black} url(${backgroundImg.src}) left top / 160% no-repeat;`,
+        background: `${materialTheme.palette.common.black} url(${backgroundImg.src});`,
+        backgroundSize: 'cover',
       }}
     >
       {children}

@@ -20,7 +20,11 @@ export const Features: React.FC<IFeaturesProps> = ({ features }) => {
         <Grid item xs={12} md={6} lg={6} style={{ textAlign: 'left' }}>
           <div className={styles.actionContent}>
             <img src={textLogoPic.src} className={styles.textLogo} />
-            <Button variant="contained" className={styles.button}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={styles.button}
+            >
               Записаца
             </Button>
           </div>

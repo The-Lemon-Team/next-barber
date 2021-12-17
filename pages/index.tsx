@@ -8,16 +8,22 @@ import { materialTheme } from '../styles/materialTheme';
 import { getMainPage } from '../firebase/firebase';
 import { Features } from '../components/Features/Features';
 import { Main } from '../components/Main';
-import { IFeature, IPriceListItem } from '../interfaces/IMainPageData';
+import {
+  IComment,
+  IFeature,
+  IPriceListItem,
+} from '../interfaces/IMainPageData';
 import { PriceList } from '../components/PriceList/PriceList';
+import { Comments } from '../components/Comments';
 
 interface IHomeProps {
   title: string;
   features: IFeature[];
   priceList: IPriceListItem[];
+  comments: IComment[];
 }
 
-const Home = ({ features, title, priceList }: IHomeProps) => {
+const Home = ({ features, title, priceList, comments }: IHomeProps) => {
   return (
     <>
       <Head>
@@ -30,6 +36,7 @@ const Home = ({ features, title, priceList }: IHomeProps) => {
           <Features features={features} />
         </Main>
         <PriceList priceList={priceList} />
+        <Comments comments={comments} />
       </ThemeProvider>
     </>
   );
@@ -38,15 +45,14 @@ const Home = ({ features, title, priceList }: IHomeProps) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const mainPageData = await getMainPage();
-
-  console.log(mainPageData.priceList);
+  const { title, features, priceList, comments } = await getMainPage();
 
   return {
     props: {
-      title: mainPageData.title,
-      features: mainPageData.features,
-      priceList: mainPageData.priceList,
+      title,
+      features,
+      priceList,
+      comments,
     },
   };
 };

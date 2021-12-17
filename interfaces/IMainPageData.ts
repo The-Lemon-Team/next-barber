@@ -8,8 +8,16 @@ export interface IPriceListItem {
   price: number;
 }
 
+export interface IComment {
+  avatar: string;
+  authorName: string;
+  date: string;
+  text: string;
+}
+
 export interface IMainPageData {
   title: string;
   features: IFeature[];
   priceList: IPriceListItem[];
+  comments: IComment[];
 }

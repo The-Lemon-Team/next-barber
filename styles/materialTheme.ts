@@ -11,10 +11,10 @@ export const materialTheme = createTheme({
       white: '#FDFFFC',
     },
     primary: {
-      main: '#FDFFFC',
+      main: '#0D0E13',
     },
     secondary: {
-      main: '#0057FF',
+      main: '#FDFFFC',
     },
     warning: {
       main: '#FF9F1C',

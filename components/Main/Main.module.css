@@ -1,9 +1,9 @@
 .main {
   flex-grow: 1;
-  padding: 60px 0 180px;
+  padding: 60px 0 86px;
   color: rgb(0, 0, 0);
   background: rgb(248, 245, 242);
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   background-size: cover;
 }

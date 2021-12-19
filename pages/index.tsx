@@ -4,26 +4,24 @@ import { ThemeProvider } from '@mui/material';
 
 import { Header } from '../components/Header';
 
-import { materialTheme } from '../styles/materialTheme';
 import { getMainPage } from '../firebase/firebase';
 import { Features } from '../components/Features/Features';
 import { Main } from '../components/Main';
-import {
-  IComment,
-  IFeature,
-  IPriceListItem,
-} from '../interfaces/IMainPageData';
 import { PriceList } from '../components/PriceList/PriceList';
 import { Comments } from '../components/Comments';
+import { Portfolio } from '../components/Portfolio';
 
-interface IHomeProps {
-  title: string;
-  features: IFeature[];
-  priceList: IPriceListItem[];
-  comments: IComment[];
-}
+import { materialTheme } from '../styles/materialTheme';
 
-const Home = ({ features, title, priceList, comments }: IHomeProps) => {
+import { IMainPageData } from '../interfaces';
+
+const Home = ({
+  features,
+  title,
+  priceList,
+  comments,
+  gallery,
+}: IMainPageData) => {
   return (
     <>
       <Head>
@@ -37,6 +35,7 @@ const Home = ({ features, title, priceList, comments }: IHomeProps) => {
         </Main>
         <PriceList priceList={priceList} />
         <Comments comments={comments} />
+        <Portfolio items={gallery} />
       </ThemeProvider>
     </>
   );
@@ -45,7 +44,7 @@ const Home = ({ features, title, priceList, comments }: IHomeProps) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { title, features, priceList, comments } = await getMainPage();
+  const { title, features, priceList, comments, gallery } = await getMainPage();
 
   return {
     props: {
@@ -53,6 +52,7 @@ export const getStaticProps: GetStaticProps = async () => {
       features,
       priceList,
       comments,
+      gallery,
     },
   };
 };

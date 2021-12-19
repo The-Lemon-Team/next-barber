@@ -5,15 +5,23 @@ import {
   doc,
   getDoc,
   DocumentReference,
+  getDocs,
+  query,
+  QuerySnapshot,
+  DocumentData,
 } from '@firebase/firestore';
 
 import { variables } from './variables';
+
 import {
   IComment,
+  ICommonData,
   IFeature,
+  IGalleryItem,
   IMainPageData,
+  IPriceList,
   IPriceListItem,
-} from '../interfaces/IMainPageData';
+} from '../interfaces';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -28,41 +36,66 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firestore = initializeFirestore(firebaseApp, {});
-const mainPageCollection = collection(firestore, variables.dbPath || '');
-const docRef = doc(mainPageCollection, variables.docId);
+const getCollection = (collectionName: string) =>
+  collection(firestore, collectionName || '');
+const mainPageCollection = getCollection(variables.dbPath || '');
 
 interface IRawData {
   title: string;
   features: DocumentReference[];
   priceList: DocumentReference[];
   comments: DocumentReference[];
+  gallery: DocumentReference[];
 }
 
 export const getRawMainPage = () =>
-  getDoc(docRef).then((result) => {
+  getDoc(doc(mainPageCollection, variables.docId)).then((result) => {
     return result.data() as IRawData;
   });
 
-export const getMainPage = (): Promise<IMainPageData> =>
-  getRawMainPage().then(({ features, title, priceList, comments }) => {
-    const featureDocs = features.map((docRef) =>
-      getDoc(docRef).then((result) => result.data() as IFeature),
-    );
-    const priceListDocs = priceList.map((docRef) =>
-      getDoc(docRef).then((result) => result.data() as IPriceListItem),
-    );
-    const commentsDocs = comments.map((docRef) =>
-      getDoc(docRef).then((result) => result.data() as IComment),
+export const getPriceListDocs = () =>
+  getDocs(query(getCollection('price-list')));
+const getFeatureDocs = () => getDocs(query(getCollection('features')));
+const getCommentDocs = () => getDocs(query(getCollection('comments')));
+const getGalleryDocs = () => getDocs(query(getCollection('gallery')));
+const getMainDataDoc = () => getDoc(doc(mainPageCollection, 'common'));
+
+const resolveDocs =
+  <Type, Result = Type & { id: string }>(
+    request: () => Promise<QuerySnapshot<DocumentData>>,
+  ): (() => Promise<Result[]>) =>
+  () =>
+    request().then(
+      (snapshot) =>
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...(doc.data() as Omit<Type, 'id'>),
+        })) as unknown as Array<Result>,
     );
 
-    return Promise.all([
-      Promise.all(featureDocs),
-      Promise.all(priceListDocs),
-      Promise.all(commentsDocs),
-    ]).then(([features, priceList, comments]) => ({
-      comments,
-      features,
-      priceList,
-      title,
-    }));
-  });
+const getPriceListData: () => Promise<IPriceList> =
+  resolveDocs<IPriceListItem>(getPriceListDocs);
+const getFeaturesData: () => Promise<IFeature[]> =
+  resolveDocs<IFeature>(getFeatureDocs);
+const getCommentsData: () => Promise<IComment[]> =
+  resolveDocs<IComment>(getCommentDocs);
+const getGalleryData: () => Promise<IGalleryItem[]> =
+  resolveDocs<IGalleryItem>(getGalleryDocs);
+const getCommonData: () => Promise<ICommonData> = () =>
+  getMainDataDoc().then((snapshot) => snapshot.data() as ICommonData);
+
+export const getMainPage = async (): Promise<IMainPageData> => {
+  const gallery = await getGalleryData();
+  const comments = await getCommentsData();
+  const features = await getFeaturesData();
+  const priceList = await getPriceListData();
+  const commonData = await getCommonData();
+
+  return {
+    ...commonData,
+    gallery,
+    comments,
+    features,
+    priceList,
+  };
+};

@@ -7,7 +7,7 @@ import styles from './Features.module.css';
 import textLogoPic from './text-logo.png';
 import barbePic from './barbe.png';
 
-import { IFeature } from '../../interfaces/IMainPageData';
+import { IFeature } from '../../interfaces/MainPageData';
 
 interface IFeaturesProps {
   features: IFeature[];

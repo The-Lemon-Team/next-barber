@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IComment } from '../../interfaces/IMainPageData';
+import { IComment } from '../../interfaces/MainPageData';
 import {
   Avatar,
   Card,

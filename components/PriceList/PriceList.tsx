@@ -16,7 +16,7 @@ import { materialTheme } from '../../styles/materialTheme';
 import styles from './PriceList.module.css';
 import sharedStyles from '../../styles/shared.module.css';
 
-import { IPriceListItem } from '../../interfaces/IMainPageData';
+import { IPriceListItem } from '../../interfaces/MainPageData';
 
 interface IPriceListProps {
   priceList: IPriceListItem[];

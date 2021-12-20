@@ -33,7 +33,7 @@ export const Gallery: React.FC<IPortfolioProps> = ({ items }) => {
   };
 
   return (
-    <StandardSection title={'Наши работы'} fullWidth>
+    <StandardSection title={'Наши работы'}>
       <Box pb={4}>
         <Carousel
           swipeable={false}

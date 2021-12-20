@@ -1,16 +1,16 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { Header } from '../components/Header';
 
-import { getMainPage } from '../firebase/firebase';
 import { Features } from '../components/Features/Features';
 import { Main } from '../components/Main';
 import { PriceList } from '../components/PriceList/PriceList';
 import { Comments } from '../components/Comments';
-import { Portfolio } from '../components/Portfolio';
+import { Gallery } from '../components/Gallery';
 
+import { getMainPage } from '../firebase/firebase';
 import { materialTheme } from '../styles/materialTheme';
 
 import { IMainPageData } from '../interfaces';
@@ -29,13 +29,15 @@ const Home = ({
         <title>{title}</title>
       </Head>
       <ThemeProvider theme={materialTheme}>
+        <CssBaseline />
+
         <Main>
           <Header title={title} />
           <Features features={features} />
         </Main>
         <PriceList priceList={priceList} />
         <Comments comments={comments} />
-        <Portfolio items={gallery} />
+        <Gallery items={gallery} />
       </ThemeProvider>
     </>
   );

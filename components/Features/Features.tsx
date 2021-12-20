@@ -7,7 +7,7 @@ import styles from './Features.module.css';
 import textLogoPic from './text-logo.png';
 import barbePic from './barbe.png';
 
-import { IFeature } from '../../interfaces/MainPageData';
+import { IFeature } from '../../interfaces';
 
 interface IFeaturesProps {
   features: IFeature[];
@@ -39,8 +39,8 @@ export const Features: React.FC<IFeaturesProps> = ({ features }) => {
 
       <section className={styles.features}>
         <Grid container className={styles.content}>
-          {features.map(({ title, description }, index) => (
-            <Grid item xs={12} md={4} key={index} className={styles.feature}>
+          {features.map(({ title, description, id }) => (
+            <Grid item xs={12} md={4} key={id} className={styles.feature}>
               <b className={styles.featureTitle}>{title}</b>
               <Typography
                 variant="subtitle1"

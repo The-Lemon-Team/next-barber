@@ -1,8 +1,12 @@
+.itemWrapper {
+  padding: 0 12px;
+}
+
 .item {
   width: 100%;
   overflow: hidden;
 }
 
 .item img {
-  width: 100%;
+  max-width: 100%;
 }

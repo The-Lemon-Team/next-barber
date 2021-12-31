@@ -26,6 +26,7 @@ export const AboutUs: React.FC<IAboutUsProps> = () => {
                 simplifyTitle
               >
                 <Typography variant="h4">Barber Andrey</Typography>
+                <Typography variant="h6" color='secondary'>+6(123)333-13-33</Typography>
                 <div className={styles.socials}>
                   <Box display="inline-block">
                     <IconButton size="large">

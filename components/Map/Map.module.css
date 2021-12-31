@@ -31,3 +31,10 @@
   background: #000;
   transform: rotate(45deg);
 }
+
+@media (max-width: 900px) {
+  .tooltip::after {
+    left: auto;
+    right: 16px;
+  }
+}

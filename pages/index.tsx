@@ -1,6 +1,7 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import Script from 'next/script';
+import { CssBaseline, Divider, ThemeProvider } from '@mui/material';
 
 import { Header } from '../components/Header';
 
@@ -9,11 +10,14 @@ import { Main } from '../components/Main';
 import { PriceList } from '../components/PriceList/PriceList';
 import { Comments } from '../components/Comments';
 import { Gallery } from '../components/Gallery';
+import { AboutUs } from '../components/AboutUs/AboutUs';
 
 import { getMainPage } from '../firebase/firebase';
 import { materialTheme } from '../styles/materialTheme';
+import { env } from '../constants/env';
 
 import { IMainPageData } from '../interfaces';
+import React from 'react';
 
 const Home = ({
   features,
@@ -38,6 +42,8 @@ const Home = ({
         <PriceList priceList={priceList} />
         <Comments comments={comments} />
         <Gallery items={gallery} />
+        <Divider color="white" />
+        <AboutUs />
       </ThemeProvider>
     </>
   );

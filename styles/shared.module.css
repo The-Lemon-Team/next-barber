@@ -29,3 +29,18 @@
   background: #fff;
   transform: rotate(45deg);
 }
+
+.simplifyTitle::after {
+  display: none;
+}
+
+.simplifyTitle::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 10px);
+  left: -48px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  transform: rotate(45deg);
+}

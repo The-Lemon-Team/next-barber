@@ -11,7 +11,7 @@ import {
   DocumentData,
 } from '@firebase/firestore';
 
-import { variables } from './variables';
+import { env } from '../constants/env';
 
 import {
   IComment,
@@ -25,12 +25,12 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: variables.apiKey,
-  authDomain: variables.authDomain,
-  projectId: variables.projectId,
-  storageBucket: variables.storageBucket,
-  messagingSenderId: variables.messagingSenderId,
-  appId: variables.appId,
+  apiKey: env.apiKey,
+  authDomain: env.authDomain,
+  projectId: env.projectId,
+  storageBucket: env.storageBucket,
+  messagingSenderId: env.messagingSenderId,
+  appId: env.appId,
 };
 
 // Initialize Firebase
@@ -38,7 +38,7 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const firestore = initializeFirestore(firebaseApp, {});
 const getCollection = (collectionName: string) =>
   collection(firestore, collectionName || '');
-const mainPageCollection = getCollection(variables.dbPath || '');
+const mainPageCollection = getCollection(env.dbPath || '');
 
 interface IRawData {
   title: string;
@@ -49,7 +49,7 @@ interface IRawData {
 }
 
 export const getRawMainPage = () =>
-  getDoc(doc(mainPageCollection, variables.docId)).then((result) => {
+  getDoc(doc(mainPageCollection, env.docId)).then((result) => {
     return result.data() as IRawData;
   });
 

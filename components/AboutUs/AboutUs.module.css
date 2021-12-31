@@ -1,0 +1,80 @@
+.container {
+  position: relative;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 100%;
+  /*width: 50%;*/
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.86);
+  height: 100%;
+}
+
+.gridWrapper {
+  height: 100%;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  background: rgba(0, 0, 0, 0.86);
+  width: 100%;
+  height: 100%;
+}
+
+.section {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  border-left: rgba(0, 0, 0, 0.25) 1px solid;
+
+  transition: background 0.5s;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 40px 0;
+    align-items: start;
+  }
+
+  .card {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .card::after {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.section:hover {
+  background: rgba(0, 0, 0, 0.09) !important;
+}
+
+.mapWrapper {
+  height: 100%;
+  width: 100%;
+  min-height: 620px;
+}
+
+.content {
+  height: 280px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+}

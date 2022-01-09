@@ -2,9 +2,9 @@ import React from 'react';
 import { Typography, Button, Grid } from '@mui/material';
 
 import { OutWrapper } from '../OutWrapper';
+import { Logo } from '../Logo';
 
 import styles from './Features.module.css';
-import textLogoPic from './text-logo.png';
 import barbePic from './barbe.png';
 
 import { IFeature } from '../../interfaces';
@@ -19,7 +19,9 @@ export const Features: React.FC<IFeaturesProps> = ({ features }) => {
       <Grid container className={styles.grid} alignItems="center">
         <Grid item xs={12} md={6} lg={6} style={{ textAlign: 'left' }}>
           <div className={styles.actionContent}>
-            <img src={textLogoPic.src} className={styles.textLogo} />
+            <div className={styles.textLogo}>
+              <Logo />
+            </div>
             <Button
               variant="contained"
               color="secondary"

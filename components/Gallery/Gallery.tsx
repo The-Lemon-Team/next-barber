@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Carousel from 'react-multi-carousel';
+import { Box } from '@mui/system';
+import Image from 'next/image';
 
 import { IGalleryItem } from '../../interfaces';
 
 import styles from './Gallery.module.css';
 import { StandardSection } from '../StandardSection';
-import { Box } from '@mui/system';
 
 interface IPortfolioProps {
   items: IGalleryItem[];
 }
 
 export const Gallery: React.FC<IPortfolioProps> = ({ items }) => {
-  const [count, setCount] = useState(10);
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -36,7 +35,7 @@ export const Gallery: React.FC<IPortfolioProps> = ({ items }) => {
     <StandardSection title={'Наши работы'}>
       <Box pb={4}>
         <Carousel
-          swipeable={false}
+          swipeable={true}
           draggable={false}
           responsive={responsive}
           ssr={true}
@@ -44,15 +43,12 @@ export const Gallery: React.FC<IPortfolioProps> = ({ items }) => {
           transitionDuration={500}
           itemClass={styles.itemWrapper}
         >
-          {items.map((item) => (
+          {items.map((item, index) => (
             <div key={item.id} className={styles.item}>
               <img
+                alt={`work-example-${index}`}
                 className="react-multi-carousel-item--active"
                 src={item.imageSrc}
-                onClick={() => {
-                  console.log(count);
-                  setCount(count + 1);
-                }}
               />
             </div>
           ))}

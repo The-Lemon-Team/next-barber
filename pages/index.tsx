@@ -1,6 +1,5 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Script from 'next/script';
 import { CssBaseline, Divider, ThemeProvider } from '@mui/material';
 
 import { Header } from '../components/Header';
@@ -11,10 +10,10 @@ import { PriceList } from '../components/PriceList/PriceList';
 import { Comments } from '../components/Comments';
 import { Gallery } from '../components/Gallery';
 import { AboutUs } from '../components/AboutUs/AboutUs';
+import { Footer } from '../components/Footer';
 
 import { getMainPage } from '../firebase/firebase';
 import { materialTheme } from '../styles/materialTheme';
-import { env } from '../constants/env';
 
 import { IMainPageData } from '../interfaces';
 import React from 'react';
@@ -25,6 +24,9 @@ const Home = ({
   priceList,
   comments,
   gallery,
+  phone,
+  address,
+  geocode,
 }: IMainPageData) => {
   return (
     <>
@@ -43,7 +45,13 @@ const Home = ({
         <Comments comments={comments} />
         <Gallery items={gallery} />
         <Divider color="white" />
-        <AboutUs />
+        <AboutUs
+          title={title}
+          phone={phone}
+          geocode={geocode}
+          address={address}
+        />
+        <Footer />
       </ThemeProvider>
     </>
   );
@@ -52,10 +60,22 @@ const Home = ({
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { title, features, priceList, comments, gallery } = await getMainPage();
+  const {
+    title,
+    features,
+    priceList,
+    comments,
+    gallery,
+    address,
+    geocode,
+    phone,
+  } = await getMainPage();
 
   return {
     props: {
+      address,
+      geocode,
+      phone,
       title,
       features,
       priceList,

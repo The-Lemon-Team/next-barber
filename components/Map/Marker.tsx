@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Coords } from 'google-map-react';
-import { Box, Tooltip, Typography } from '@mui/material';
+import { Box, Tooltip, Typography, useMediaQuery } from '@mui/material';
 
 import styles from './Map.module.css';
 
@@ -21,15 +21,20 @@ const MapCard = ({ address }: IMapCardProps) => {
 
 interface IMarkerProps extends Coords, IMapCardProps {}
 
-export const Marker = ({ address }: IMarkerProps) => (
-  <Tooltip
-    open
-    placement="top-start"
-    classes={{
-      tooltip: styles.tooltip,
-    }}
-    title={<MapCard address={address} />}
-  >
-    <div className={classNames(styles.pin, 'look-here')} />
-  </Tooltip>
-);
+export const Marker = ({ address }: IMarkerProps) => {
+  const isMobileLayout = useMediaQuery('(max-width:900px)');
+  const placement = isMobileLayout ? 'top' : 'top-start';
+
+  return (
+    <Tooltip
+      open
+      placement={placement}
+      classes={{
+        tooltip: styles.tooltip,
+      }}
+      title={<MapCard address={address} />}
+    >
+      <div className={classNames(styles.pin, 'look-here')} />
+    </Tooltip>
+  );
+};

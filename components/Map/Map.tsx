@@ -13,11 +13,18 @@ interface IMapProps {
 
 export function Map({ address, position }: IMapProps) {
   const isMobileLayout = useMediaQuery('(max-width:900px)');
-  // const mapRef = useRef();
-  const center = getCenter(position);
+  const center = getCenter(position, isMobileLayout);
+
+  console.log('center', center);
 
   return (
-    <div style={{ height: isMobileLayout ? '512px' : '620px', width: '100%' }}>
+    <div
+      style={{
+        height: isMobileLayout ? '580px' : '620px',
+        width: '100%',
+        zIndex: 10000,
+      }}
+    >
       <GoogleMapReact
         bootstrapURLKeys={{ key: env.googleMapApiKey || '' }}
         // ref={mapRef}
@@ -32,7 +39,7 @@ export function Map({ address, position }: IMapProps) {
           zoomControl: false,
           fullscreenControl: false,
         }}
-        defaultCenter={center}
+        center={center}
         defaultZoom={16}
       >
         <Marker lat={position.lat} lng={position.lng} address={address} />

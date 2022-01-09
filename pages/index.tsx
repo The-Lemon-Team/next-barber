@@ -1,3 +1,4 @@
+import React from 'react';
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { CssBaseline, Divider, ThemeProvider } from '@mui/material';
@@ -16,7 +17,6 @@ import { getMainPage } from '../firebase/firebase';
 import { materialTheme } from '../styles/materialTheme';
 
 import { IMainPageData } from '../interfaces';
-import React from 'react';
 
 const Home = ({
   features,

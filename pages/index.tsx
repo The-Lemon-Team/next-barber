@@ -51,7 +51,7 @@ const Home = ({
           geocode={geocode}
           address={address}
         />
-        <Footer />
+        <Footer address={address} phone={phone} title={title} />
       </ThemeProvider>
     </>
   );

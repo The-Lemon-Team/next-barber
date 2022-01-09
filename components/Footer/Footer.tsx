@@ -6,9 +6,13 @@ import { Logo } from '../Logo';
 
 import { materialTheme } from '../../styles/materialTheme';
 
-interface IFooterProps {}
+interface IFooterProps {
+  phone: string;
+  address: string;
+  title: string;
+}
 
-export const Footer: React.FC<IFooterProps> = (props) => {
+export const Footer: React.FC<IFooterProps> = ({ phone, address, title }) => {
   return (
     <div style={{ background: materialTheme.palette.primary.main }}>
       <OutWrapper>
@@ -17,9 +21,6 @@ export const Footer: React.FC<IFooterProps> = (props) => {
             <Logo />
           </Grid>
           <Grid item md={5} />
-          <Grid item md={3}>
-            list
-          </Grid>
         </Grid>
       </OutWrapper>
     </div>

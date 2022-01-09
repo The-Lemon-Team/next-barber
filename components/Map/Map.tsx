@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import GoogleMapReact, { Coords } from 'google-map-react';
 import { useMediaQuery } from '@mui/material';
 
@@ -15,8 +15,6 @@ export function Map({ address, position }: IMapProps) {
   const isMobileLayout = useMediaQuery('(max-width:900px)');
   const center = getCenter(position, isMobileLayout);
 
-  console.log('center', center);
-
   return (
     <div
       style={{
@@ -27,14 +25,8 @@ export function Map({ address, position }: IMapProps) {
     >
       <GoogleMapReact
         bootstrapURLKeys={{ key: env.googleMapApiKey || '' }}
-        // ref={mapRef}
-        // draggable={false}
         draggable={true}
         yesIWantToUseGoogleMapApiInternals
-        onDrag={console.log}
-        onDragEnd={console.log}
-        onChange={console.log}
-        onGoogleApiLoaded={console.log}
         options={{
           zoomControl: false,
           fullscreenControl: false,

@@ -11,8 +11,11 @@ import {
   DocumentData,
   GeoPoint,
 } from '@firebase/firestore';
+import { Coords } from 'google-map-react';
 
+import { app } from './firebase-admin';
 import { env } from '../constants/env';
+import { firebaseConfig } from './firebaseConfig';
 
 import {
   IComment,
@@ -24,17 +27,6 @@ import {
   IPriceListItem,
   IRawCommonData,
 } from '../interfaces';
-import { Coords } from 'google-map-react';
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: env.apiKey,
-  authDomain: env.authDomain,
-  projectId: env.projectId,
-  storageBucket: env.storageBucket,
-  messagingSenderId: env.messagingSenderId,
-  appId: env.appId,
-};
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
@@ -42,6 +34,8 @@ export const firestore = initializeFirestore(firebaseApp, {});
 const getCollection = (collectionName: string) =>
   collection(firestore, collectionName || '');
 const mainPageCollection = getCollection(env.dbPath || '');
+
+console.log(app);
 
 interface IRawData {
   title: string;

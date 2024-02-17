@@ -48,7 +48,7 @@ export const Gallery: React.FC<IPortfolioProps> = ({ items }) => {
               <img
                 alt={`work-example-${index}`}
                 className="react-multi-carousel-item--active"
-                src={item.imageSrc}
+                src={'http://localhost:1337' + item.imageSrc}
               />
             </div>
           ))}

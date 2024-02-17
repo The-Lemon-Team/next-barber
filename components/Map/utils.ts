@@ -6,8 +6,10 @@ const CENTER_DIFFERENCE = {
   mobileLat: 0.0005,
 };
 
-export const getCenter = ({ lat, lng }: Coords, isMobile: boolean): Coords => {
-
+export const getCenter = (
+  { lat, lng } = {} as Coords,
+  isMobile: boolean,
+): Coords => {
   if (isMobile) {
     return {
       lat: lat + CENTER_DIFFERENCE.mobileLat,

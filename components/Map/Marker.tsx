@@ -21,7 +21,7 @@ const MapCard = ({ address }: IMapCardProps) => {
 
 interface IMarkerProps extends Coords, IMapCardProps {}
 
-export const Marker = ({ address }: IMarkerProps) => {
+export const Marker = ({ address, ...props }: IMarkerProps) => {
   const isMobileLayout = useMediaQuery('(max-width:900px)');
   const placement = isMobileLayout ? 'top' : 'top-start';
 

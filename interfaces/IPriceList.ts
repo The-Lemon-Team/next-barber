@@ -1,6 +1,6 @@
 export type IPriceList = Array<IPriceListItem>;
 export interface IPriceListItem {
-  id: string;
+  id: number;
   name: string;
   price: number;
 }

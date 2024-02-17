@@ -30,7 +30,7 @@ export const Comments: React.FC<ICommentsProps> = ({ comments }) => {
         columns={8}
         alignItems="stretch"
       >
-        {comments.map(({ avatar, authorName, id, date, text }) => (
+        {comments.map(({ avatar, author, id, date, text }) => (
           <Grid xs={8} md={4} key={id} item>
             <Card
               sx={{
@@ -40,11 +40,14 @@ export const Comments: React.FC<ICommentsProps> = ({ comments }) => {
             >
               <CardHeader
                 avatar={
-                  <Avatar aria-label="recipe" src={avatar}>
+                  <Avatar
+                    aria-label="recipe"
+                    src={'http://localhost:1337' + avatar}
+                  >
                     R
                   </Avatar>
                 }
-                title={<b>{authorName}</b>}
+                title={<b>{author}</b>}
                 subheader={<b>{date}</b>}
               />
               <Divider />

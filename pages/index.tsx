@@ -13,13 +13,12 @@ import { Gallery } from '../components/Gallery';
 import { AboutUs } from '../components/AboutUs/AboutUs';
 import { Footer } from '../components/Footer';
 
-import { getMainPage } from '../firebase/firebase';
+import { getMainPage } from './api/getMainPage';
 import { materialTheme } from '../styles/materialTheme';
 
 import { IMainPageData } from '../interfaces';
 
 const Home = ({
-  features,
   title,
   priceList,
   comments,
@@ -27,6 +26,7 @@ const Home = ({
   phone,
   address,
   geocode,
+  features,
 }: IMainPageData) => {
   return (
     <>
